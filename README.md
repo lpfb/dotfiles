@@ -1,5 +1,5 @@
 # dotfiles
-This repository will used to add configuration files (vimrc, makes and etc)
+This repository will be used to add configuration files (vimrc, makes and etc)
 
 
 ---------------------------------------------------------------------------
