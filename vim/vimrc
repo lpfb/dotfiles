@@ -81,6 +81,8 @@ set mouse=n
 set ruler
 set wrap "Wrap lines
 syntax on
+set hlsearch
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 "set foldmethod=syntax
 ":VerilogErrorFormat ncverilog 2
@@ -91,14 +93,15 @@ syntax on
 "---------------------------
 
 set t_Co=256
-colorscheme molokai 
+colorscheme Benokai
 highlight ColorColumn ctermbg=0 guibg=red
 
 
 "---------------------------
 "Keymap settings
 "---------------------------
-
+map <F2>   :set list<CR>
+map <F3>   :set nolist<CR>
 map <F4>   :!column -t<CR>
 map <F5>   :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 map <F6>   :NERDTreeToggle<CR>
@@ -137,4 +140,5 @@ map <leader>pp :setlocal paste!<cr>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-
+" Remap <:> to <;> With it, it is possible to execute commands without press shift
+nnoremap ; :
