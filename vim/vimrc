@@ -125,6 +125,9 @@ map <C-Right> :wincmd l<CR>
 "Habilia o copy e paste
 map <C-c> "+y<CR>
 
+"Switching paste mode to prevent autoident
+set pastetoggle=<F2>
+
 " System_Verilog_Plugin
 let mapleader = "_"
 nnoremap <leader>i :VerilogFollowInstance<CR>
