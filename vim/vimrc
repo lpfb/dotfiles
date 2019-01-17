@@ -16,27 +16,16 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tomtom/tcomment_vim'
-"Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'morganp/vim-SystemVerilogUVM.vim'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Yggdroot/indentLine'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to
-" auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
 
 "------------------------------------------------------------------------------
 "                        PLUGINS CONFIGURATIONS
@@ -55,16 +44,28 @@ function! DiffToggle()
   endif
 endfunction
 
-"gerar o ctags
-function! RunCtags()
-  let workArea = $XIP_WORKAREA
-  execute "!" . "ctags -Re -f " . workArea . "/tags" . " " . workArea
-  execute "set tags+=" . workArea . "/tags"
-endfunction
+"----------------------------------
+" Python Sintax Check and PEP8
+"----------------------------------
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-let workArea = $XIP_WORKAREA
-execute "set tags+=" . workArea . "/tags"
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
+"----------------------------------
+" Identation guide lines
+"----------------------------------
+" let g:indentLine_setColors = 0
+let g:indentLine_color_term = 237
+let g:indentLine_bgcolor_term = 16
+let g:indentLine_bgcolor_gui = '#FF5F00'
+let g:indentLine_char = '¦'
+" let g:indentLine_char = '.'
 
 "---------------------------
 " General Configurations
@@ -80,6 +81,9 @@ set autoindent
 set mouse=n
 set ruler
 set wrap "Wrap lines
+
+set cursorline " enable line high light at cursor position
+
 syntax on
 set hlsearch
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -93,34 +97,26 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 "---------------------------
 
 set t_Co=256
-colorscheme Benokai
+colorscheme CandyPaper
 highlight ColorColumn ctermbg=0 guibg=red
 
 
 "---------------------------
 "Keymap settings
 "---------------------------
-map <F2>   :set list<CR>
-map <F3>   :set nolist<CR>
-map <F4>   :!column -t<CR>
-map <F5>   :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-map <F6>   :NERDTreeToggle<CR>
-map <F7>   :set nonumber!<CR>
+map <F1>   :set nonumber!<CR>
+map <F2>   :NERDTreeToggle<CR>
+map <F3>   :set list<CR>
+map <F4>   :set nolist<CR>
+map <F5>   :!column -t<CR>
 map <F8>   :call DiffToggle()<CR>
-
-map <C-j>   :m .+1<CR>
-map <C-k>   :m .-2<CR>
+" Reload vimrc configuration
+map <F12>   :source ~/.vimrc<CR>
 
 map <Tab>   :tabn<CR>
 map <S-Tab> :tabp<CR>
-map <C-n>   :tabe<CR>
-map <C-w>   :close<CR>
+map <C-n>   :tabe.<CR>
 map <C-s>   :w!<CR>
-
-map <C-Left>  :wincmd h<CR>
-map <C-Down>  :wincmd j<CR>
-map <C-Up>    :wincmd k<CR>
-map <C-Right> :wincmd l<CR>
 
 "Habilia o copy e paste
 map <C-c> "+y<CR>
