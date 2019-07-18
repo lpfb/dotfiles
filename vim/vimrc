@@ -16,12 +16,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'morganp/vim-SystemVerilogUVM.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Yggdroot/indentLine'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'joshdick/onedark.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -97,8 +98,12 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 "---------------------------
 
 set t_Co=256
-colorscheme CandyPaper
+colorscheme onedark
 highlight ColorColumn ctermbg=0 guibg=red
+
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
 
 
 "---------------------------
