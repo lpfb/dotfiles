@@ -23,6 +23,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Yggdroot/indentLine'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'joshdick/onedark.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -44,6 +46,13 @@ function! DiffToggle()
     diffthis
   endif
 endfunction
+
+"----------------------------------
+" Mappgin <leader>
+"----------------------------------
+let mapleader = "'"
+" Show command executed at the botton right of screen
+set showcmd
 
 "----------------------------------
 " Python Sintax Check and PEP8
@@ -68,6 +77,22 @@ let g:indentLine_bgcolor_gui = '#FF5F00'
 let g:indentLine_char = '¦'
 " let g:indentLine_char = '.'
 
+"----------------------------------
+" Markdown Plugin
+"----------------------------------
+filetype plugin on
+let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_open_to_the_world = 1
+let g:instant_markdown_allow_unsafe_content = 1
+let g:instant_markdown_allow_external_content = 0
+let g:instant_markdown_mathjax = 1
+let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+let g:instant_markdown_autoscroll = 0
+let g:instant_markdown_port = 8888
+let g:instant_markdown_python = 1
+let g:instant_markdown_browser = "firefox --new-window"
+
 "---------------------------
 " General Configurations
 "---------------------------
@@ -83,7 +108,8 @@ set mouse=n
 set ruler
 set wrap "Wrap lines
 
-set cursorline " enable line high light at cursor position
+set cursorline " enable line high light at cursor position. WARNING: this
+" feature uses too much CPU
 
 syntax on
 set hlsearch
@@ -114,35 +140,46 @@ map <F2>   :NERDTreeToggle<CR>
 map <F3>   :set list<CR>
 map <F4>   :set nolist<CR>
 map <F5>   :!column -t<CR>
-map <F8>   :call DiffToggle()<CR>
+map <F8>   :SyntasticToggleMode<CR>
 " Reload vimrc configuration
-map <F12>   :source ~/.vimrc<CR>
+map <F11>   :source ~/.vimrc<CR>
 
 map <Tab>   :tabn<CR>
 map <S-Tab> :tabp<CR>
 map <C-n>   :tabe.<CR>
 map <C-s>   :w!<CR>
 
-"Habilia o copy e paste
+"Copy the selected data to linux clipboard. This option onlu works if vim
+"--version reposts +xterm_clipboard, if it reposts -xterm_clipboard you do not
+"have suport.
 map <C-c> "+y<CR>
 
 "Switching paste mode to prevent autoident
 set pastetoggle=<F2>
 
-" System_Verilog_Plugin
-let mapleader = "_"
-nnoremap <leader>i :VerilogFollowInstance<CR>
-nnoremap <leader>I :VerilogFollowPort<CR>
-nnoremap <leader>u :VerilogGotoInstanceStart<CR>
-
 " Run Ctags
 nmap <C-F11> :call RunCtags()<CR>
 
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+"map <leader>pp :setlocal paste!<cr>
 
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
+
 " Remap <:> to <;> With it, it is possible to execute commands without press shift
 nnoremap ; :
+
+" Navigating betwenn tabs 
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+"Previous and next window 
+nnoremap <leader>m gt
+nnoremap <leader>n gT
