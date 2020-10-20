@@ -15,6 +15,7 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-syntastic/syntastic'
@@ -24,11 +25,12 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'joshdick/onedark.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
+Plugin 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
 
 "------------------------------------------------------------------------------
 "                        PLUGINS CONFIGURATIONS
@@ -37,7 +39,6 @@ filetype plugin indent on    " required
 "---------------------------
 " Functions
 "---------------------------
-
 "Diff
 function! DiffToggle()
   if &diff
@@ -51,8 +52,6 @@ endfunction
 " Mappgin <leader>
 "----------------------------------
 let mapleader = "'"
-" Show command executed at the botton right of screen
-set showcmd
 
 "----------------------------------
 " Python Sintax Check and PEP8
@@ -61,37 +60,19 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let  g:syntastic_python_checkers           =  ['flake8']
+let  g:syntastic_always_populate_loc_list  =  1
+let  g:syntastic_auto_loc_list             =  1
+let  g:syntastic_check_on_open             =  1
+let  g:syntastic_check_on_wq               =  0
 
 "----------------------------------
 " Identation guide lines
 "----------------------------------
-" let g:indentLine_setColors = 0
-let g:indentLine_color_term = 237
-let g:indentLine_bgcolor_term = 16
-let g:indentLine_bgcolor_gui = '#FF5F00'
-let g:indentLine_char = '¦'
-" let g:indentLine_char = '.'
-
-"----------------------------------
-" Markdown Plugin
-"----------------------------------
-filetype plugin on
-let g:instant_markdown_slow = 1
-let g:instant_markdown_autostart = 0
-let g:instant_markdown_open_to_the_world = 1
-let g:instant_markdown_allow_unsafe_content = 1
-let g:instant_markdown_allow_external_content = 0
-let g:instant_markdown_mathjax = 1
-let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
-let g:instant_markdown_autoscroll = 0
-let g:instant_markdown_port = 8888
-let g:instant_markdown_python = 1
-let g:instant_markdown_browser = "firefox --new-window"
+let  g:indentLine_color_term    =  237
+let  g:indentLine_bgcolor_term  =  16
+let  g:indentLine_bgcolor_gui   =  '#FF5F00'
+let  g:indentLine_char          =  '¦'
 
 "---------------------------
 " General Configurations
@@ -120,16 +101,16 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 
 "---------------------------
-" Gui options
+" Color configurations
 "---------------------------
 
 set t_Co=256
-colorscheme onedark
+autocmd vimenter * colorscheme gruvbox
 highlight ColorColumn ctermbg=0 guibg=red
 
-let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
+set bg=dark
+let g:airline_theme = 'deus'
+let g:gruvbox_contrast_dark = 'medium'
 
 
 "---------------------------
@@ -139,13 +120,17 @@ map <F1>   :set nonumber!<CR>
 map <F2>   :NERDTreeToggle<CR>
 map <F3>   :set list<CR>
 map <F4>   :set nolist<CR>
-map <F5>   :!column -t<CR>
+map <F5>   :set relativenumber<CR>
+map <F6>   :set norelativenumber<CR>
+" reformat for a nice column layout
+map <F7>   :!column -t<CR>
 map <F8>   :SyntasticToggleMode<CR>
-" Reload vimrc configuration
-map <F11>   :source ~/.vimrc<CR>
+" Reload and edit vimrc configuration
+map <F10>   :source ~/.vimrc<CR>
+map <F11>   :tabe ~/.vimrc<CR>
 
-map <Tab>   :tabn<CR>
-map <S-Tab> :tabp<CR>
+map <Tab>   :tabn.<CR>
+map <S-Tab> :tabp.<CR>
 map <C-n>   :tabe.<CR>
 map <C-s>   :w!<CR>
 
@@ -160,26 +145,22 @@ set pastetoggle=<F2>
 " Run Ctags
 nmap <C-F11> :call RunCtags()<CR>
 
-" Toggle paste mode on and off
-"map <leader>pp :setlocal paste!<cr>
-
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
 
 " Remap <:> to <;> With it, it is possible to execute commands without press shift
 nnoremap ; :
 
 " Navigating betwenn tabs 
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
+nnoremap <leader>1 1gt 
+nnoremap <leader>2 2gt 
+nnoremap <leader>3 3gt 
+nnoremap <leader>4 4gt 
+nnoremap <leader>5 5gt 
+nnoremap <leader>6 6gt 
+nnoremap <leader>7 7gt 
+nnoremap <leader>8 8gt 
+nnoremap <leader>9 9gt 
 "Previous and next window 
-nnoremap <leader>m gt
+nnoremap <leader>m gt 
 nnoremap <leader>n gT
