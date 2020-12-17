@@ -128,10 +128,7 @@ map <F8>   :SyntasticToggleMode<CR>
 " Reload and edit vimrc configuration
 map <F10>   :source ~/.vimrc<CR>
 map <F11>   :tabe ~/.vimrc<CR>
-
-map <Tab>   :tabn.<CR>
-map <S-Tab> :tabp.<CR>
-map <C-n>   :tabe.<CR>
+" Salve file
 map <C-s>   :w!<CR>
 
 "Copy the selected data to linux clipboard. This option onlu works if vim
@@ -164,3 +161,6 @@ nnoremap <leader>9 9gt
 "Previous and next window 
 nnoremap <leader>m gt 
 nnoremap <leader>n gT
+
+"Buffer navigation
+nnoremap <Tab> :buffers<CR>:buffer<Space>
