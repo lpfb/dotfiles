@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mv vimrc ~/.vimrc
+ln -s ~/my_git_repos/vim/vimrc ~/.vimrc
 
 cd
 mkdir ~/.vim/bundle -p
