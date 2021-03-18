@@ -1,5 +1,5 @@
 [user]
-	email = lbarros@cpqd.com.br
+	email = tc.lbarros@padtec.com.br
 	name = Luis Paulo Fernandes de Barros
 [merge]
 	tool = meld
@@ -20,3 +20,29 @@
     added = yellow
     changed = green
     untracked = cyan
+[alias]
+	co = checkout
+# Opens this file in vim to be edited
+	ec = config --global -e
+# Updates local branch to match remote state
+	up = !git fetch && git reabse
+# Creates a local branch based on the current local commit. Ex: git co <branch name>
+	cob = checkout -b
+# Adds all changes including untracked files and creates a commit with SAVEPOINT message
+	save = !git add -A && git commit -m 'SAVEPOINT'
+# Commits tracked file changes with the message "WIP"
+	wip = commit -am "WIP"
+# Resets the previous commit, but keeps all the changes from that commit in the working directory
+	undo = reset HEAD~1 --mixed
+# Adds file modifications and deletions but ignore new ones and amend it to previous commit
+	amend = commit --amend --no-edit
+# Prints git commit tree in terminal
+	lg = log --all --graph --decorate --oneline --abbrev-commit
+# Shows branch status
+	st = status -sb
+# Show git remote URL
+	url = config --get remote.origin.url
+# Shows a complete information related to git remote url and local branchs track
+	rurl = remote show origin
+# Showing local and remote branchs and it's origins
+	bv =  branch -aavvvvvv
