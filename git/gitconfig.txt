@@ -1,5 +1,5 @@
 [user]
-	email = tc.lbarros@padtec.com.br
+	email = lbarros@cpqd.com.br
 	name = Luis Paulo Fernandes de Barros
 [merge]
 	tool = meld
@@ -21,11 +21,12 @@
     changed = green
     untracked = cyan
 [alias]
+# Checkout
 	co = checkout
 # Opens this file in vim to be edited
 	ec = config --global -e
 # Updates local branch to match remote state
-	up = !git fetch && git reabse
+	up = !git fetch && git rebase
 # Creates a local branch based on the current local commit. Ex: git co <branch name>
 	cob = checkout -b
 # Adds all changes including untracked files and creates a commit with SAVEPOINT message
@@ -46,3 +47,5 @@
 	rurl = remote show origin
 # Showing local and remote branchs and it's origins
 	bv =  branch -aavvvvvv
+# Gerrit push command
+    pu = push origin HEAD:refs/for/master
