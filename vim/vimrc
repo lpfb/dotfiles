@@ -24,8 +24,10 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Yggdroot/indentLine'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'joshdick/onedark.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'morhetz/gruvbox'
+Plugin 'ghifarit53/tokyonight-vim'
+Plugin 'wadackel/vim-dogrun'
+Plugin 'NLKNguyen/papercolor-theme'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -90,14 +92,18 @@ let g:indentLine_concealcursor = "n" " formatting characters not visible only in
 let c_space_errors=1
 set laststatus=2
 set encoding=utf-8
+" Tab configurations
 set tabstop=4
 set shiftwidth=4
 set expandtab
+" Auto identatioin
 set smartindent
 set autoindent
-set mouse=n
 set ruler
 set wrap "Wrap lines
+" With this option it is possible to select something in visual mode and past
+" outside vim with a right click
+set mouse=n
 
 set cursorline " enable line high light at cursor position. WARNING: this
 " feature uses too much CPU
@@ -106,71 +112,82 @@ syntax on
 set hlsearch
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
-"set foldmethod=syntax
-":VerilogErrorFormat ncverilog 2
-
-
 "---------------------------
-" Color configurations
+" Colorscheme configurations
 "---------------------------
+colorscheme onedark
 
-set t_Co=256
-autocmd vimenter * colorscheme gruvbox
-highlight ColorColumn ctermbg=0 guibg=red
-
-set bg=dark
-let g:airline_theme = 'deus'
-let g:gruvbox_contrast_dark = 'medium'
-
+let g:onedark_hide_endofbuffer=1
+let g:onedark_termcolors=256
+let g:airline_theme='onedark'
 
 "---------------------------
 "Key map settings
 "---------------------------
-map <F1>   :set nonumber!<CR>
-map <F2>   :NERDTreeToggle<CR>
-map <F3>   :set list<CR>
-map <F4>   :set nolist<CR>
-map <F5>   :set relativenumber<CR>
-map <F6>   :set norelativenumber<CR>
+" Toggle show line numbers
+noremap <F1>   :set nonumber!<CR>
+" Toggle NerdTree file navigator
+nnoremap <F2> :NERDTreeToggle<CR>
+" Show line endings and indentation character's
+nnoremap <F3> :set list<CR>
+" Hide line endings and indentation character's
+nnoremap <F4> :set nolist<CR>
+" Enable/Disable relative numbers
+nnoremap <F5> :set relativenumber!<CR>
 " reformat for a nice column layout
-map <F7>   :!column -t<CR>
+vnoremap <F7> :!column -t<CR>
 " Enable/Disable syntax check
-map <F8>   :SyntasticToggleMode<CR>
+nnoremap <F8> :SyntasticToggleMode<CR>
 " Reload and edit vimrc configuration
-map <F10>   :source ~/.vimrc<CR>
-map <F11>   :tabe ~/.vimrc<CR>
-" Salve file
-map <C-s>   :w!<CR>
+nnoremap <F10> :source ~/.vimrc<CR>
+" Run Ctags
+nnoremap <C-F11> :call RunCtags()<CR>
 
-"Copy the selected data to linux clipboard. This option onlu works if vim
-"--version reposts +xterm_clipboard, if it reposts -xterm_clipboard you do not
-"have suport.
-map <C-c> "+y<CR>
+" Edit file in hexmode
+nnoremap <C-h> :%!xxd<CR>
+" Open vimrc in a new tab
+nnoremap <C-E> :tabe $MYVIMRC<CR>
+" Salve file using Ctrl+s
+nnoremap <C-s> :w!<CR>
+" Quit vim using Ctrl+q
+nnoremap <C-q> :q<CR>
+" Retab the entire file
+nnoremap <C-T> :retab<CR>
+" removes all trailing white spaces
+nnoremap <silent> <C-Y> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+" Moving lines up and down, respectively
+noremap + dd<up><up>p
+noremap - ddp
+"Copy the selected data to linux clipboard. This option only works if vim "--version reposts +xterm_clipboard, if it reposts -xterm_clipboard you do not have suport.
+map <C-C> "+y<CR>
+" In insert and visual mode, press these jk instead of press esc
+inoremap <C-J> <esc>
+vnoremap <C-J> <esc>
+" In visual mode, press 4 instead of $ to select until line end
+vnoremap 4 $
+" In visual mode, press ç to paste using 0 buffer
+vnoremap ç "0p
+" Remap <:> to <;> With it, it is possible to execute commands without press shift
+nnoremap ; :
 
 "Switching paste mode to prevent autoident
 set pastetoggle=<F2>
 
-" Run Ctags
-nmap <C-F11> :call RunCtags()<CR>
+" Remove the Windows ^M and convert it to Linux style
+noremap <leader>w :set ff=unix<cr>
 
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Remap <:> to <;> With it, it is possible to execute commands without press shift
-nnoremap ; :
-
-" Navigating betwenn tabs 
-nnoremap <leader>1 1gt 
-nnoremap <leader>2 2gt 
-nnoremap <leader>3 3gt 
-nnoremap <leader>4 4gt 
-nnoremap <leader>5 5gt 
-nnoremap <leader>6 6gt 
-nnoremap <leader>7 7gt 
-nnoremap <leader>8 8gt 
-nnoremap <leader>9 9gt 
-"Previous and next window 
-nnoremap <leader>m gt 
+" Navigating betwenn tabs
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+"Previous and next window
+nnoremap <leader>m gt
 nnoremap <leader>n gT
 
 "Buffer navigation
