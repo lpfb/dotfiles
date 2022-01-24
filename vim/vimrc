@@ -28,6 +28,8 @@ Plugin 'morhetz/gruvbox'
 Plugin 'ghifarit53/tokyonight-vim'
 Plugin 'wadackel/vim-dogrun'
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rainglow/vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -85,6 +87,15 @@ let g:indentLine_setConceal = 2
 "    c for Command line editing, for 'incsearch'
 let g:indentLine_concealcursor = "n" " formatting characters not visible only in normal mode
 
+"----------------------------------
+" YouCompleteMe Config
+"----------------------------------
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_always_populate_location_list=1
+" used to inform error, warning and etc in vim quickfix list (:lopen)
+" To see warnings and erros type: :lopen
+let g:ycm_enable_diagnostic_signs=1
+
 "---------------------------
 " General Configurations
 "---------------------------
@@ -105,7 +116,8 @@ set wrap "Wrap lines
 " outside vim with a right click
 set mouse=n
 
-set cursorline " enable line high light at cursor position. WARNING: this
+set guifont=Fira\ Code:h12
+set cursorline " enable line high light at cursor position.
 " feature uses too much CPU
 
 syntax on
@@ -115,8 +127,9 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 "---------------------------
 " Colorscheme configurations
 "---------------------------
-colorscheme onedark
-
+" colorscheme onedark
+colorscheme Atelier_SulphurpoolDark
+set t_Co=256
 let g:onedark_hide_endofbuffer=1
 let g:onedark_termcolors=256
 let g:airline_theme='onedark'
@@ -142,7 +155,6 @@ nnoremap <F8> :SyntasticToggleMode<CR>
 nnoremap <F10> :source ~/.vimrc<CR>
 " Run Ctags
 nnoremap <C-F11> :call RunCtags()<CR>
-
 " Edit file in hexmode
 nnoremap <C-h> :%!xxd<CR>
 " Open vimrc in a new tab
@@ -160,35 +172,38 @@ noremap + dd<up><up>p
 noremap - ddp
 "Copy the selected data to linux clipboard. This option only works if vim "--version reposts +xterm_clipboard, if it reposts -xterm_clipboard you do not have suport.
 map <C-C> "+y<CR>
-" In insert and visual mode, press these jk instead of press esc
+" On insert and visual mode, press these jk instead of press esc
 inoremap <C-J> <esc>
 vnoremap <C-J> <esc>
-" In visual mode, press 4 instead of $ to select until line end
-vnoremap 4 $
 " In visual mode, press ç to paste using 0 buffer
 vnoremap ç "0p
 " Remap <:> to <;> With it, it is possible to execute commands without press shift
 nnoremap ; :
+" Show quickfix list
+noremap <C-O> :lopen<CR>
 
-"Switching paste mode to prevent autoident
-set pastetoggle=<F2>
+" ------------------------------
+"    YouCompleteMe shortcuts
+" ------------------------------
+" Goto Include
+nnoremap <leader>i :YcmCompleter GoToInclude<CR>
+" Goto Declaration
+nnoremap <leader>dc :YcmCompleter GoToDeclaration<CR>
+" Goto Definition
+nnoremap <leader>df :YcmCompleter GoToDefinition<CR> 
+" attempts to find all of the references within the project to the identifier
+" under the cursor and populates the quickfix list with those locations
+nnoremap <leader>rf :YcmCompleter GoToReferences<CR> 
+" Informs variable type
+nnoremap <leader>ty :YcmCompleter GetType<CR> 
+" If possible, fix error under cursor. Example of fix: missing library
+nnoremap <leader>fx :YcmCompleter FixIt<CR> 
+" ------------------------------
 
 " Remove the Windows ^M and convert it to Linux style
 noremap <leader>w :set ff=unix<cr>
-
-" Navigating betwenn tabs
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
-"Previous and next window
-nnoremap <leader>m gt
-nnoremap <leader>n gT
-
 "Buffer navigation
 nnoremap <Tab> :buffers<CR>:buffer<Space>
+
+"Switching paste mode to prevent autoident
+set pastetoggle=<F2>

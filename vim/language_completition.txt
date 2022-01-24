@@ -1,0 +1,21 @@
+YouCompleteMe:
+- This pluging enables code completition and helps to navigate to definitions of functions, variables, headers
+- It compile, Analyzes and show errors/warnings in real time
+- link: https://github.com/ycm-core/YouCompleteMe
+
+.vimrc:
+- add this line:
+    Plugin 'Valloric/YouCompleteMe'
+
+Installation:
+1) Download cmake-3.22.1
+2) install it:
+    ./bootstrap && make && sudo make install
+3) install g++ 8
+    sudo apt-get install g++-8
+4) Compilando e instalando YouCompleteMe
+    cd ~/.vim/bundle/YouCompleteMe
+    CC=gcc-8 CXX=g++-8 python3 install.py --clangd-completer
+
+Use:
+- link: https://github.com/ycm-core/YouCompleteMe
