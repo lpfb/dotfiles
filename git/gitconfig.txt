@@ -23,11 +23,13 @@
 [alias]
 # Checkout
 	co = checkout
+# Removing untrackerd files
+    clean = clean -fd
 # Opens this file in vim to be edited
 	ec = config --global -e
 # Updates local branch to match remote state
 	up = !git fetch && git rebase
-# Creates a local branch based on the current local commit. Ex: git co <branch name>
+# Creates a local branch based on the current local commit. Ex: git cob <branch name>
 	cob = checkout -b
 # Adds all changes including untracked files and creates a commit with SAVEPOINT message
 	save = !git add -A && git commit -m 'SAVEPOINT'
@@ -49,3 +51,5 @@
 	bv =  branch -aavvvvvv
 # Gerrit push command
     pu = push origin HEAD:refs/for/master
+# Add modifications of versioned files
+    a = add -u
