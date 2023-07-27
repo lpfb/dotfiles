@@ -1,6 +1,9 @@
 #!/bin/bash
 
-ln -s ~/my_git_repos/vim/vimrc ~/.vimrc
+sudo apt-get install python3-dev
+sudo apt-get update && sudo apt-get install build-essential
+
+ln -s vimrc ~/.vimrc
 
 cd
 mkdir ~/.vim/bundle -p
