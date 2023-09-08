@@ -1,5 +1,5 @@
 [user]
-	email = lbarros@cpqd.com.br
+	email = luis.2sk@gmail.com
 	name = Luis Paulo Fernandes de Barros
 [merge]
 	tool = meld
