@@ -130,11 +130,11 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 "---------------------------
 " colorscheme onedark
 colorscheme gruvbox
-set t_Co=256
-syntax on
-let g:airline_theme='gruvbox'
 set bg=dark
-
+set t_Co=256
+let g:onedark_hide_endofbuffer=1
+let g:onedark_termcolors=256
+let g:airline_theme='gruvbox'
 
 "---------------------------
 "Key map settings

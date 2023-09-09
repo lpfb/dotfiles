@@ -1,0 +1,62 @@
+# remap prefix from 'C-b' to 'C-a'
+unbind C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
+
+# split panes using | and -
+bind | split-window -h
+bind - split-window -v
+unbind '"'
+unbind %
+
+# set 256 color
+set -g default-terminal "screen-256color"
+
+# start session number from 1 rather than 0
+set -g base-index 1
+
+# start pane number from 1 similar to windows
+set -g pane-base-index 1
+
+# Make the current window the first window
+bind T swap-window -t 1
+
+# reload config file (change file location to your the tmux.conf you want to use)
+bind r source-file ~/.tmux.conf
+
+# switch panes using Alt-arrow without prefix
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
+
+# Enable mouse mode (tmux 2.1 and above)
+set -g mouse on
+
+# Copy mode
+set -g mode-keys vi
+set-option -s set-clipboard off
+bind P paste-buffer
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X rectangle-toggle
+unbind -T copy-mode-vi Enter
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel 'xclip -se c -i'
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel 'xclip -se c -i'
+
+# don't rename windows automatically
+set-option -g allow-rename off
+
+######################
+### DESIGN CHANGES ###
+######################
+set -g status-bg 'colour235'
+set -g status-justify 'centre'
+set -g status-left-length '100'
+set -g status 'on'
+set -g status-right-length '100'
+setw -g window-status-separator ''
+set -g status-left '#[fg=colour232,bg=colour154] #S #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #W #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] #(whoami) - #(uptime -p ) #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
+set -g status-right '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour121,bg=colour235] %r #[fg=colour238,bg=colour235,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #H #[fg=colour154,bg=colour238,nobold,nounderscore,noitalics]#(rainbarf --battery --remaining --no-rgb)'
+setw -g window-status-format '#[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]#[default] #I |#W| #[fg=colour235,bg=colour235,nobold,nounderscore,noitalics]'
+setw -g window-status-current-format '#[fg=colour235,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour222,bg=colour238] #I |#W| #F #[fg=colour239,bg=colour235,nobold,nounderscore,noitalics]'
+
