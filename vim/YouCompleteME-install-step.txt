@@ -15,7 +15,7 @@ Installation:
     sudo apt-get install g++-8
 4) Compilando e instalando YouCompleteMe
     cd ~/.vim/bundle/YouCompleteMe
-    CC=gcc-8 CXX=g++-8 python3 install.py --clangd-completer
+    CC=gcc CXX=g++ python3 install.py --clangd-completer
 
 Use:
 - link: https://github.com/ycm-core/YouCompleteMe
