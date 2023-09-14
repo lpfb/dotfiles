@@ -30,8 +30,6 @@ Plugin 'wadackel/vim-dogrun'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rainglow/vim'
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plugin 'junegunn/fzf.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -66,7 +64,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" let  g:syntastic_python_checkers           =  ['flake8']
+let  g:syntastic_python_checkers           =  ['flake8']
 let  g:syntastic_always_populate_loc_list  =  1
 let  g:syntastic_auto_loc_list             =  1
 let  g:syntastic_check_on_open             =  1
@@ -122,6 +120,7 @@ set guifont=Fira\ Code:h12
 set cursorline " enable line high light at cursor position.
 " feature uses too much CPU
 
+syntax on
 set hlsearch
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
@@ -175,16 +174,14 @@ noremap - ddp
 "Copy the selected data to linux clipboard. This option only works if vim "--version reposts +xterm_clipboard, if it reposts -xterm_clipboard you do not have suport.
 map <C-C> "+y<CR>
 " On insert and visual mode, press these jk instead of press esc
-inoremap <C-j> <esc>
-vnoremap <C-j> <esc>
+inoremap <C-J> <esc>
+vnoremap <C-J> <esc>
 " In visual mode, press ç to paste using 0 buffer
 vnoremap ç "0p
 " Remap <:> to <;> With it, it is possible to execute commands without press shift
 nnoremap ; :
 " Show quickfix list
 noremap <C-O> :lopen<CR>
-" Open Fuzzy vim file
-nnoremap <C-p> :Files<Cr>
 
 " ------------------------------
 "    YouCompleteMe shortcuts
@@ -211,9 +208,3 @@ nnoremap <Tab> :buffers<CR>:buffer<Space>
 
 "Switching paste mode to prevent autoident
 set pastetoggle=<F2>
-"
-"---------------------------
-" ssm file highlight
-"---------------------------
-autocmd BufNew,BufRead *.asm set ft=nasm
-
