@@ -14,7 +14,7 @@ Após a instalação é possível configurar o prompt do starship. Para tal, exe
 	```sh
 	cp starship.toml ~/.config/
 	```
-1. Modifique bashrc para executar o starship em cada execução
+1. Modifique bashrc adicionando a linha abaixo no fim do arquivo
 	```sh
-	echo "eval "$(starship init bash)"" >> ~/.bashrc
+	eval "$(starship init bash)"
 	```
