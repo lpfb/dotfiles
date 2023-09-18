@@ -3,7 +3,9 @@
 2) git clone https://github.com/gpakosz/.tmux.git
 3) ln -s -f .tmux/.tmux.conf
 4) cp .tmux/.tmux.conf.local .
-5) editar .tmux.conf e descomentar as linhas:
+5) abrir tmux: tmux
+6) Dentro do tmux, rodar C-A + e
+7) descomentar as linhas e comentar as de mesmo nome com outro valor:
     tmux_conf_theme_left_separator_main='\uE0B0'
     tmux_conf_theme_left_separator_sub='\uE0B1'
     tmux_conf_theme_right_separator_main='\uE0B2'
