@@ -18,5 +18,7 @@
         Insert the desired pattern
     C-q
         This will create a list of the pattern occurencies in neovim botton
-    :s/pattern_old/new_value/gc
+    :cdo s/pattern_old/new_value/gc
         This will change all occurencies of pattern_old for new_value in entires project
+        :cdo
+            Used to allow us to execute an arbitraty command
