@@ -12,9 +12,9 @@
 - Call vim on terminal:
     nvim
 - Inside neovim, open neovim-tree navigation
-    C-a n
+    C-n
 - Inside neovim, grep all project files to find the desired pattern
-    C-a p 
+    <espace>fg 
         Insert the desired pattern
     C-q
         This will create a list of the pattern occurencies in neovim botton
