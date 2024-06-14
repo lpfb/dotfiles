@@ -1,10 +1,10 @@
 [user]
-	email = luis.2sk@gmail.com
+	email = lbarros@cpqd.com.br
 	name = Luis Paulo Fernandes de Barros
 [merge]
 	tool = meld
 [core]
-	editor = vim
+	editor = nvim
 [color]
     ui = auto
 [color "branch"]
