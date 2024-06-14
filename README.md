@@ -1,14 +1,13 @@
-# dotfiles
-This repository will be used to add configuration files (vimrc, makes and etc)
+# Dotfiles
+Repository is used to store all dotfiles. The directorys are organized to be used by the toll stow.
 
+# Requisits
+sudo apt install stow
 
----------------------------------------------------------------------------
-# VIMRC instructions:
-1) Abrir o terminal na $HOME
-2) baixar o arquivo vimrc.txt e vim_script.sh (google drive)
-3) renomear para .vimrc
-4) Executar o script vim_script.sh
-5) Abrir o vim
-6) digitar o comando :PluginInstall
-7) Aguardar o fim da operação, sinalizado através do done no rodapé do editor
-8) Fechar o vim
+# Using
+Note: This repo MUST be checkout into HOME directory otherwise will not work.
+
+Linking all dotfiles:
+1. Once the repo was checkout out, cd into it
+2. Stow all folder: stow git; stow nvim; stow tmux; stow tmux; stow zsh 
+3. It`s done!
