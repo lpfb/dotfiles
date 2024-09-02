@@ -6,6 +6,8 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set expandtab")
 vim.cmd("set smartindent")
 vim.cmd("set autoindent")
+
+-- Map <leader> key to space
 vim.g.mapleader = " "
 
 -- Navigate vim panes better
@@ -14,13 +16,16 @@ vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
 vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
+-- Buffer manipulation
+vim.keymap.set('n', '<c-b>', ':Telescope buffers<CR>')
+
 -- Remap ESC to Ctrl+j
 vim.keymap.set("i","<c-j>","<Esc>")
 
 -- Retab all file
 vim.keymap.set('n', '<leader>t', ':retab<CR>')
 
--- Remove search hoghlight
+-- Remove search highlight
 vim.keymap.set('n', '<leader>n', ':nohlsearch<CR>')
 
 -- Salve file using Ctrl+s
@@ -33,5 +38,5 @@ vim.keymap.set('n', '<c-q>', ':q<CR>')
 vim.keymap.set('n', '<leader>h', ':vs<CR>')
 vim.keymap.set('n', '<leader>v', ':sp<CR>')
 
+-- Enable line numbers
 vim.wo.number = true
-
