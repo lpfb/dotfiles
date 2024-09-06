@@ -56,7 +56,7 @@ alias ip='ip -c'
 alias diff='diff --color'
 alias meuip='curl ifconfig.me; echo;'
 alias tail='grc tail'
-alias ping='grc ping'
+alias ping='grc /usr/bin/ping'
 alias ps='grc ps'
 alias netstat='grc netstat'
 alias dig='grc dig'
@@ -79,3 +79,4 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/sbin"
 export PATH="$PATH:/user/bin"
 export PATH="$PATH:/usr/bin"
+source ~/.powerlevel10k/powerlevel10k.zsh-theme
