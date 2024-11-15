@@ -22,6 +22,9 @@ vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 -- Buffer manipulation
 vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>')
 
+-- Remove unwanted withe spaces
+vim.keymap.set("n","<F5>",":%s/\\s\\+$//e<CR>")
+
 -- Remap ESC to Ctrl+j
 vim.keymap.set("i","<c-j>","<Esc>")
 
