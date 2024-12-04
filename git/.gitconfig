@@ -21,6 +21,8 @@
     changed = green
     untracked = cyan
 [alias]
+# Diff
+    df = !git diff -u | diff-so-fancy
 # Checkout
 	co = checkout
 # Removing untrackerd files
