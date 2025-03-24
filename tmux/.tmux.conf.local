@@ -370,7 +370,7 @@ tmux_conf_theme_clock_style="24"
 #   - false (default)
 #   - disabled
 # on Linux, this requires xsel, xclip or wl-copy
-tmux_conf_copy_to_os_clipboard=yes
+tmux_conf_copy_to_os_clipboard=false
 
 
 # -- urlscan -------------------------------------------------------------------
@@ -504,7 +504,9 @@ tmux_conf_uninstall_plugins_on_reload=true
 # # /!\ do not remove the previous line
 # #     do not write below this line
 
-setw -g mode-keys vi
-bind-key -T copy-mode-vi 'v' send -X begin-selection     # Begin selection in copy mode.
-bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle  # Begin selection in copy mode.
-bind-key -T copy-mode-vi 'y' send -X copy-selection      # Yank selection in copy mode.
+set -g default-command /bin/zsh
+
+set-window-option -g mode-keys vi
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi V send -X select-line
+bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
