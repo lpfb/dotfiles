@@ -46,3 +46,9 @@ vim.keymap.set('n', '<leader>v', ':sp<CR>')
 
 -- Enable line numbers
 vim.wo.number = true
+
+-- Copy to clipboard
+vim.keymap.set('v', '<leader>y', '"+y')
+
+-- Paste from clipboard
+vim.keymap.set('v', '<leader>p', '"+p')
