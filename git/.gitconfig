@@ -55,3 +55,5 @@
     pu = push origin HEAD:refs/for/master
 # Add modifications of versioned files
     a = add -u
+[safe]
+	directory = /home/lbarros/projects/sshfs

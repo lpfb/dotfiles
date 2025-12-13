@@ -7,6 +7,12 @@ vim.cmd("set expandtab")
 vim.cmd("set smartindent")
 vim.cmd("set autoindent")
 
+--Lua:
+vim.g.material_style = "palenight"
+
+-- enable clipboard
+vim.opt.clipboard = "unnamedplus"
+
 -- Map <leader> key to space
 vim.g.mapleader = " "
 
