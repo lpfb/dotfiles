@@ -1,6 +1,11 @@
 return {
   {
     "williamboman/mason.nvim",
+    opts = {
+        ensure_installed = {
+            "clangd"
+        }
+    },
     lazy = false,
     config = function()
       require("mason").setup()
