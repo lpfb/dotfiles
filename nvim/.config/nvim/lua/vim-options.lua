@@ -8,7 +8,7 @@ vim.cmd("set smartindent")
 vim.cmd("set autoindent")
 
 --Lua:
-vim.g.material_style = "palenight"
+vim.g.material_style = "deep ocean"
 
 -- enable clipboard
 vim.opt.clipboard = "unnamedplus"
