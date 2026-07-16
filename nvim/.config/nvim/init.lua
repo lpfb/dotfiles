@@ -14,3 +14,15 @@ vim.opt.rtp:prepend(lazypath)
 require("vim-options")
 require("lazy").setup("plugins")
 require('Comment').setup()
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    local save = vim.fn.winsaveview()
+    -- Remove espaços no fim da linha
+    vim.api.nvim_command([[silent! %s/\s\+$//e]])
+    -- Remove linhas em branco extras no fim do arquivo
+    vim.api.nvim_command([[silent! %s/\n\+\%$//e]])
+    vim.fn.winrestview(save)
+  end,
+})
