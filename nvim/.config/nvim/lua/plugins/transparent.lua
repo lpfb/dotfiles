@@ -17,5 +17,6 @@ return {
           -- Also the user event "TransparentClear" will be triggered
           on_clear = function() end,
     })
+    require('transparent').clear_prefix('NeoTree')
     end,
 }

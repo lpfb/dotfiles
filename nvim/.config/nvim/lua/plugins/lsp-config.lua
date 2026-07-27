@@ -1,11 +1,6 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "clangd"
-      }
-    },
     lazy = false,
     config = function()
       require("mason").setup()
@@ -16,6 +11,14 @@ return {
     lazy = false,
     opts = {
       auto_install = true,
+      ensure_installed = {
+        "ts_ls",
+        "html",
+        "lua_ls",
+        "clangd",
+        "pyright",
+        "bashls",
+      },
     },
   },
   {
@@ -26,7 +29,7 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       -- Lista de servidores que você quer configurar
-      local servers = { "ts_ls", "html", "lua_ls", "clangd" }
+      local servers = { "ts_ls", "html", "lua_ls", "clangd", "pyright", "bashls" }
 
       for _, lsp in ipairs(servers) do
         -- No Neovim 0.11/0.12, usamos vim.lsp.config ao invés de lspconfig[lsp].setup
@@ -41,8 +44,21 @@ return {
       -- Atalhos de teclado (LSP Keymaps)
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "LSP Definition" })
+      vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, { desc = "LSP Declaration" })
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "LSP References" })
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
+
+      -- Atalhos de diagnósticos (warnings/erros)
+      vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show Diagnostic" })
+      vim.keymap.set("n", "[d", function()
+        vim.diagnostic.jump({ count = -1, float = true })
+      end, { desc = "Previous Diagnostic" })
+      vim.keymap.set("n", "]d", function()
+        vim.diagnostic.jump({ count = 1, float = true })
+      end, { desc = "Next Diagnostic" })
+      vim.keymap.set("n", "<leader>fd", function()
+        require("telescope.builtin").diagnostics()
+      end, { desc = "Find Diagnostics" })
     end,
   },
 }
